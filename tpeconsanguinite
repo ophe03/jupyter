@@ -1,0 +1,29 @@
+import pylab as plt
+from random import *
+
+
+L=['BR','BR','BR','BB','BB','RR']
+L=L*10
+##print(L)
+A=[L.count('BB')]
+B=[L.count('BR')]
+C=[L.count('RR')]
+for i in range(100) :
+    M=list(range(60))
+    N=[]
+
+    for j in range(30):
+        [a,b]=sample(M,2)
+        N.append(L[a][randint(0,1)]+L[b][randint(0,1)])
+        M.remove(a)
+        M.remove(b)
+        N.append(L[a][randint(0,1)]+L[b][randint(0,1)])
+    ##print(N)
+    L=N
+    A.append(N.count('BB'))
+    B.append(N.count('BR')+N.count('RB'))
+    C.append(N.count('RR'))
+print(A,B,C)
+X=list(range(101))
+plt.plot(X,A,'b',B,'r',C,'g')
+plt.show()
